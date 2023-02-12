@@ -26,6 +26,6 @@ export default ImageGalleryItem;
 ImageGalleryItem.propTypes = {
   webformatURL: PropTypes.string.isRequired,
   largeImageURL: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
+  alt: PropTypes.string,
   handleShowModal: PropTypes.func,
 };
