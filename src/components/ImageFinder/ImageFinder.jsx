@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import Notiflix from 'notiflix';
 
-import apiServise from '../../Api/apiServise';
+
+import apiService from '../../Api/apiService';
 import Searchbar from '../Searchbar/Searchbar';
 import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
@@ -26,9 +27,9 @@ const ImageFinder = () => {
     async function fetchImages() {
       try {
         setLoading(true);
-        const data = await apiServise(search, page);
+        const data = await apiService(search, page);
         if (data.total === 0) {
-          return Notiflix.Notify.warning('Nothing found, pleace try again!');
+          return Notiflix.Notify.warning('Nothing found, please try again!');
         }
         const { hits, totalHits } = data;
         setItems(prevItems => {
@@ -54,7 +55,7 @@ const ImageFinder = () => {
     setPage(prevPage => prevPage + 1);
   };
   const handleShowModal = event => {
-    const imgAlt = event.target.alt;
+    const imgAlt = event.target.altImg;
     const largeImageURL = event.target.srcset;
     setShowModal(true);
     setImgAlt(imgAlt);

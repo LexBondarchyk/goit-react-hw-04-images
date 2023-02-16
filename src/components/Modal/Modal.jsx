@@ -1,13 +1,12 @@
-import { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect} from 'react';
 
 import styles from './modal.module.scss';
 
-const Modal = (imgAlt, imgLargeSrc, onModalClose) => {
+const Modal = ({imgAlt, imgLargeSrc, onModalClose}) => {
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress);
-    return document.removeEventListener("keydown", onKeyPress);
+    return () => document.removeEventListener('keydown', onKeyPress);
   });
 
   const onKeyPress = event => {
@@ -30,8 +29,4 @@ const Modal = (imgAlt, imgLargeSrc, onModalClose) => {
 }
 export default Modal;
 
-Modal.propTypes = {
-  imgAlt: PropTypes.string.isRequired,
-  imgLargeSrc: PropTypes.string.isRequired,
-  onModalClose: PropTypes.func.isRequired,
-};
+

@@ -13,7 +13,7 @@ const ImageGallery = ({ items, error, handleShowModal }) => {
   return (
     <>
 
-      {error && <p>Somthing goes wrong. Please try again later.</p>}
+      {error && <p>Something goes wrong. Please try again later.</p>}
       <ul className={styles.ImageGallery}>{elements}</ul>
     </>
   );
