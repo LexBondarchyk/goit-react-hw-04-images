@@ -1,19 +1,26 @@
 import {useState} from "react";
+import Notiflix from 'notiflix';
 import PropTypes from "prop-types";
+
 import styles from './search-bar.module.scss'
 
+
 const Searchbar = ({onSubmit}) => {
-  const [state, setState] = useState("")
+  const [searchImages, setSearchImages] = useState('')
 
   const handleChange = ({target}) =>{
     const {value} = target;
-    setState (value);
+    setSearchImages (value);
   };
 
   const handleSubmit = e =>{
-    e.preventDefault()
-    onSubmit(state)
-    setState("");
+    e.preventDefault();
+
+    if (searchImages.trim() === '') {
+     return Notiflix.Notify.warning('Enter text to search!');
+    }
+    onSubmit(searchImages);
+    setSearchImages('');
   };
 
   return(
@@ -29,7 +36,7 @@ const Searchbar = ({onSubmit}) => {
 
         <input
           className={styles.SearchForInput}
-          value={state}
+          value={searchImages}
           onChange={handleChange}
           name="search"
           placeholder="Search images"
